@@ -1,0 +1,87 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Voters</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="{% static 'css/style3.css' %}">
+
+
+	</head>
+	<body>
+            <div class="container-fluid">
+                <div class="row">
+					<div class="col-3">
+						<h1 style="color:blue; font-size:50px;"><b>AI VOTING</b></h1>
+					</div>
+					<div class="col-3">
+						<a href="{% url 'home1' %}" type="button" class="btn btn-primary">Home</a>
+					</div>
+					<div class="col-3">
+						<a href="{% url 'view_voters' %}" type="button" class="btn btn-primary">Voters</a>
+					</div>
+					<div class="col-3">
+						<a href="{% url 'logout1' %}" type="button" class="btn btn-primary">Logout</a>
+					</div>
+                </div>
+            </div>
+
+
+	<section class="ftco-section">
+		<div class="container-fluid">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">Voters</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<h4 class="text-center mb-4">Voter Details</h4>
+					<div class="table-wrap">
+						<div class="form-row-last">
+							<a href="{% url 'add_voters' %}" type="button"  class="register">+ Add</a>
+						</div>
+						<table class="table">
+					    <thead class="thead-primary">
+					      <tr>
+
+					        <th>ID</th>
+							<th>Voter's Aadhaar Number</th>
+							<th>Voter's ID Number</th>
+							<th>Voter's Name</th>
+					        <th>Action</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+						{% for v in all_voters %}
+							 <tr>
+								<td>{{ forloop.counter }}</td>
+								<td>{{ v.v_aadhaar }}</td>
+								<td>{{ v.v_id }}</td>
+								<td>{{ v.v_name }}</td>
+								<td> <a href="{% url 'edit_voters' vid=v.id %}">Edit</a> &nbsp; <a href="{% url 'delete_voters' vid=v.id %}">Delete</a></td>
+					         </tr>
+						{% endfor %}
+					    </tbody>
+					  </table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/popper.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+
+	</body>
+</html>
+
